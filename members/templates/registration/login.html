@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{%block title%} Log In {%endblock%}
+
+{%block content%} <br><br>
+
+<h1 style="font-family: Comfortaa;" class="text-center mt-5">Welcome Back !</h1>
+<br>
+<div class="container form-group">
+    <form action="" method="post">
+        {% csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-block btn-warning mt-4 px-auto mb-5">Log In</button>    
+    </form>
+
+</div>
+
+
+
+{%endblock%}

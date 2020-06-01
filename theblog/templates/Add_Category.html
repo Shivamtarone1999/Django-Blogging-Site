@@ -1,0 +1,27 @@
+
+{% extends 'base.html' %}
+
+{%block title%} Add Category {%endblock%}
+
+
+{%block content%}
+
+{% if user.is_authenticated %} <br><br>
+
+<h1 class="text-center mt-5">Add New Category</h1>
+<br>
+<div class="container form-group">
+    <form action="" method="post">
+        {% csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-block btn-warning mt-4 px-auto mb-5">Add Category</button>
+
+    </form>
+
+</div>
+{% else %}
+You are not allowed here ! Please Login First
+{% endif %}
+{%endblock%}
+
+

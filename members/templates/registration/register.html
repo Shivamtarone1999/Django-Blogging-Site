@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{%block title%} Register {%endblock%}
+
+{%block content%}
+<h1 class="text-center mt-5">Create New Account</h1>
+
+<div class="container form-group">
+    <form action="" method="post">
+        {% csrf_token%}
+        {{form.as_p}}
+        <button class="btn btn-block btn-warning mt-4 px-auto mb-5">Register</button>
+
+    </form>
+
+</div>
+
+
+
+{%endblock%}

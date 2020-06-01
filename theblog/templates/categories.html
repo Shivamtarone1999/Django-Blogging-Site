@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{%block title%} {{cats}} {%endblock%}
+
+{%block content%} <br><br>
+
+{% if category_posts %}
+
+<h1 style="font-family: Roboto Slab;" class="text-center mt-5">Posts on {{cats}} </h1>
+
+
+    {% for post in category_posts %}
+    <div class="container mt-5">
+        <a style="text-decoration: none;font-family: Comfortaa;" href="{% url 'postDetail' post.pk  %}"><h3>{{post.title}} </h3><span><small style="color: black;">{{post.category}}</small></span> </a>
+    <p style="font-family: Muli;">{{post.body|slice:":200"}}...</p>
+    <small style="font-family: Lemonada;">{{post.author}}</small>
+    {% if user.is_authenticated %}
+    <small><a href="{% url 'editPost' post.pk %}">Edit Post</a></small><br>
+    {%endif%}
+    <small>Created on :- {{post.post_date}}</small><br><br> <hr>
+    </div>
+    {%endfor%}
+
+
+{%else%}
+<h3 style="font-family: Comfortaa;" class="container py-5 text-center mt-5">Sorry ! We dont have any posts of this category right now 😥</h3>
+    <hr>
+{%endif%}
+
+{%endblock%}

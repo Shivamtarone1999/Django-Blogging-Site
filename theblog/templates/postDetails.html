@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{%block title%} {{post.title}} {%endblock%}
+
+{%block content%}
+<br><br>
+<div class="container mt-5">
+    <h1 style="text-decoration: none;font-family: Comfortaa;">{{post.title}}</h1><span
+        class="badge badge-primary">{{post.title_tag}}</span> <br>
+    <small>Post by :- <span style="font-family: Lemonada;">{{user.first_name}} &nbsp;{{user.last_name}} </span>
+    </small><br>
+    <small>Created on - {{post.post_date}}</small><br>
+
+    {% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+    <small class="text-right"><a href="{% url 'editPost' post.pk %}">Edit Post</a></small>
+    <hr>
+    {%endif%}
+    {%endif%}
+    <br>
+    <p style="font-family: Muli;">{{post.body | safe}}</p> <br><br>
+
+    <form action="{% url 'like_post' post.pk %}" method="post">
+        {% csrf_token %}
+        {% if user.is_authenticated %}
+
+    {% if liked %}
+
+            <button type="submit" name="post_id" value="{{post.id}}" 
+            class="btn-small btn btn-info">{{total_likes}} Unlike
+            </button>
+
+    {% else %}
+
+            <button type="submit" name="post_id" value="{{post.id}}" 
+            class="btn-small btn btn-success">{{total_likes}} Like
+            </button>
+
+    {% endif %}
+
+        {%else%}
+        <p>Please <a href="{% url 'login' %}">Login</a> to like</p>
+        {%endif%}
+
+      
+
+    </form>
+
+
+</div> <br><br>
+
+
+<br><br><br>
+
+{%endblock%}

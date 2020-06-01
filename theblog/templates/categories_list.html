@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{%block title%} Blog Categories List{%endblock%}
+
+{%block content%}
+<br><br>
+    <div class="container mt-5">
+        <h1 style="text-decoration: none;font-family: Comfortaa;">Blog Categories</h1> <br>
+       
+        {% for item in cat_menu_list %}
+            <p class="lead">
+                <a class="nav-link" href="{% url 'category' item|slugify %}">
+                    {{item}}
+                </a>
+            </p>
+        {%endfor%}
+    
+    </div>
+
+{%endblock%}

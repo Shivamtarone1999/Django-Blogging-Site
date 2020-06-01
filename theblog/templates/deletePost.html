@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{%block title%} Add Post {%endblock%}
+
+{%block content%} 
+<br><br>
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+<h1 style="font-family: Comfortaa;" class="text-center mt-5">Delete Post</h1>
+<br>
+<h3 class="text-center mt-5">Delete <strong>{{post.title}} </strong> Post</h3>
+<p class="text-center">Created on date <b>{{post.post_date}}</b> </p>
+
+<div class="container form-group text-center">
+    <form action="" method="post">
+        {% csrf_token%}
+
+        <p class="text-center">Are you sure ? Do you want to Delete this post <span class="ml-3"><a href="{% url 'home' %}"><strong>Cancel</strong></a></span> </p>
+        <button class="btn btn-danger mt-2 px-auto mb-5">Delete Post</button>
+
+    </form>
+
+</div>
+{%else%}
+    <h3 class="text-center mt-5 py-5">Sorry ! You can't edit this update this post </h3>
+    <h4 class="text-center">Only author of this page can</h4>
+{%endif%}
+
+{% else %}
+You are not allowed here ! Please Login First
+{% endif %}
+
+
+
+{%endblock%}
